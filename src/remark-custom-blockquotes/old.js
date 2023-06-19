@@ -1,6 +1,6 @@
 // TODO: Convert to TypeScript, update to new remark plugin format, add tests
-
 import { visit } from 'unist-util-visit';
+
 
 export function rehypeSpecialBlockquote(specialTypes) {
 	/**
