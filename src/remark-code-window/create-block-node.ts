@@ -1,15 +1,15 @@
-import type * as md from 'mdast';
+import type * as mdast from 'mdast';
 import type * as unist from 'unist';
 
 type BlockNodeOptions = {
   value: string;
-  copyButton?: md.Paragraph;
+  copyButton?: mdast.Paragraph;
   as: string;
   className: string;
   children?: unist.Node<unist.Data>[];
 };
 
-export function createBlockNode(options: BlockNodeOptions): md.Paragraph {
+export function createBlockNode(options: BlockNodeOptions): mdast.Paragraph {
   const textNode = { type: 'text', value: options.value };
 
   const children = [textNode, options.copyButton, ...(options.children ?? [])].filter(
@@ -27,6 +27,6 @@ export function createBlockNode(options: BlockNodeOptions): md.Paragraph {
         [identifierKey]: options.value,
       },
     },
-    children: children as md.PhrasingContent[],
+    children: children as mdast.PhrasingContent[],
   };
 }

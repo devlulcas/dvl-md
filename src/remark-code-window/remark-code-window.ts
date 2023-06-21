@@ -52,24 +52,23 @@ export const remarkCodeWindow: RemarkCodeWindow = (pluginOptions) => {
   const visitor: Visitor<mdast.Code> = (node, index, parent) => {
     if (!node.lang) return;
 
-    const [lang, ...tail] = node.lang.split(' ');
-
-    if (!lang) return;
-
-    if (lang.includes('header') || lang.includes('header')) {
+    if (node.lang.includes('header') || node.lang.includes('header')) {
       throw new Error(
         '@remark-code-window: header and footer must be specified after the language'
       );
     }
 
-    node.lang = lang;
-
     const getBlockContent = (block: string) => {
-      const blockInTail = tail.find((item) => item.includes(block));
-      return blockInTail?.split('=').pop()?.replace(/"/g, '');
+      // Match block attribute, ignores the double quotes, group it, match with the final double quotes 
+      const regex = new RegExp(`${block}="([^"]*)"`);
+
+      if (!node.meta) return;
+
+      // The ([^"]*) content
+      return node.meta.match(regex)?.at(1);
     };
 
-    const noWindow = getBlockContent('no-window');
+    const noWindow = node.meta?.includes('no-window');
 
     if (noWindow) return;
 

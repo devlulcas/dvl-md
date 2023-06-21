@@ -11,6 +11,7 @@ export function createWrapperNode(options: WrapperNodeOptions): unist.Parent {
     data: {
       hName: 'div',
       hProperties: {
+        'data-remark-code-window-wrapper': true,
         class: options.className,
       },
     },
