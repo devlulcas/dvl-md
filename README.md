@@ -24,7 +24,7 @@ This is a custom flavor of Markdown that I use for my own projects. It's a bit o
 ----------------
 ```
 
-- [ ] Special blockquotes syntax with custom types
+- [x] Special blockquotes syntax with custom types
 
 ```md
 > warning: this is a warning
@@ -41,7 +41,7 @@ This is a custom flavor of Markdown that I use for my own projects. It's a bit o
 
 - [ ] Auto lite youtube embeds
 
-- [ ] Auto "external link" icon for links that are not on the same domain
+- [x] Auto "external link" icon for links that are not on the same domain
 
 ## Done through external plugins
 
