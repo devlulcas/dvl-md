@@ -1,7 +1,6 @@
 import type * as mdast from 'mdast';
 import type * as unified from 'unified';
 import { visit, type Visitor } from 'unist-util-visit';
-import type * as unist from 'unist';
 
 type RemarkCustomBlockquotesOptions = {
   types?: {
@@ -21,7 +20,39 @@ export const remarkCustomBlockquotes: RemarkCustomBlockquotes = (
   const types = pluginOptions?.types || [];
 
   const visitor: Visitor<mdast.Blockquote> = (node, index, parent) => {
-    console.log(node);
+    const firstChild = node.children.at(0);
+
+    if (!firstChild || firstChild.type !== 'paragraph') return;
+
+    const firstTextNode = firstChild.children.at(0);
+
+    if (!firstTextNode || firstTextNode.type !== 'text') return;
+
+    const [extractedTypePrefix, ...rest] = firstTextNode.value.split(':');
+
+    const content = rest.join(':');
+
+    const typeConfig = types.find(
+      (type) => type.prefix === extractedTypePrefix
+    );
+
+    if (!typeConfig) return;
+
+    node.data = {
+      ...(node.data ?? {}),
+      hProperties: {
+        ...(node.data?.hAttributes ?? {}),
+        class: typeConfig.className,
+      },
+    } 
+
+    firstTextNode.value = content;
+
+    if (parent) {
+      parent.children.splice(index ?? 0, 1, node);
+
+      return (index ?? 0) + 2
+    }
   };
 
   return (tree) => {
