@@ -57,3 +57,18 @@ test('should add a baseUrl in images that start with ./', async () => {
   expect(result.toString()).toContain('src="https://example.com/image.png"');
 });
 
+test('should add classNames passed', async () => {
+  const markdown = '![image](./image.png)';
+
+  const processor = remark()
+    .use(remarkBetterImages, {
+      baseUrl: 'https://example.com',
+      placeholderClassName: 'custom-class',
+    })
+    .use(html, { sanitize: false });
+
+  const result = await processor.process(markdown);
+
+  expect(result.toString()).toContain('class="custom-class"');
+});
+

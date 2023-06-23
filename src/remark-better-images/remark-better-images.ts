@@ -5,11 +5,13 @@ import { visit, type Visitor } from 'unist-util-visit';
 type RemarkBetterImagesOptions = {
   baseUrl: string;
   lazyload: boolean;
+  placeholderClassName: string,
 };
 
 const defaultOptions: RemarkBetterImagesOptions = {
   baseUrl: '',
   lazyload: true,
+  placeholderClassName: 'remark-better-images-placeholder',
 };
 
 type RemarkBetterImages = unified.Plugin<
@@ -34,12 +36,29 @@ export const remarkBetterImages: RemarkBetterImages = (pluginOptions) => {
       node.url = `${options.baseUrl}${addSlash}${cleanUrl}`;
     }
 
+    const getClassNames = (node: mdast.Image) => {
+      if (!node.data) return '';
+      
+      const { hProperties } = node.data;
+
+      let classNames = '';
+
+      if (typeof hProperties === 'object' && hProperties !== null) {
+        if ('class' in hProperties && typeof hProperties.class === 'string') {
+          classNames = hProperties.class;
+        }
+      }
+
+      return classNames;
+    };
+
     if (options.lazyload) {
       node.data = {
         ...node.data,
         hProperties: {
           ...(node.data?.hProperties ?? {}),
           loading: 'lazy',
+          class: `${getClassNames(node)} ${options.placeholderClassName}`.trim(),
         },
       };
     }
