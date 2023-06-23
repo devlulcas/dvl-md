@@ -35,8 +35,6 @@ This is a custom flavor of Markdown that I use for my own projects. It's a bit o
 
 - [x] Auto lazy loaded images with a placeholder class name
 
-- [x] Auto lazy loaded images with a placeholder class name
-
 ```md
 ![alt text](image.png)
 ```
