@@ -1,9 +1,9 @@
 import { remark } from 'remark';
 import html from 'remark-html';
-import { expect, test } from 'vitest';
+import { expect, it } from 'vitest';
 import { remarkBetterImages } from '..';
 
-test('should add lazy in images by default', async () => {
+it('should add lazy in images by default', async () => {
   const markdown = '![image](image.png)';
 
   const processor = remark()
@@ -15,7 +15,7 @@ test('should add lazy in images by default', async () => {
   expect(result.toString()).toContain('loading="lazy"');
 });
 
-test('should add a baseUrl in images that without a protocol in the url', async () => {
+it('should add a baseUrl in images that without a protocol in the url', async () => {
   const markdown = '![image](image.png)';
 
   const processor = remark()
@@ -29,7 +29,7 @@ test('should add a baseUrl in images that without a protocol in the url', async 
   expect(result.toString()).toContain('src="https://example.com/image.png"');
 });
 
-test('should add a baseUrl in images that start with /', async () => {
+it('should add a baseUrl in images that start with /', async () => {
   const markdown = '![image](/image.png)';
 
   const processor = remark()
@@ -43,7 +43,7 @@ test('should add a baseUrl in images that start with /', async () => {
   expect(result.toString()).toContain('src="https://example.com/image.png"');
 });
 
-test('should add a baseUrl in images that start with ./', async () => {
+it('should add a baseUrl in images that start with ./', async () => {
   const markdown = '![image](./image.png)';
 
   const processor = remark()
@@ -57,7 +57,7 @@ test('should add a baseUrl in images that start with ./', async () => {
   expect(result.toString()).toContain('src="https://example.com/image.png"');
 });
 
-test('should add classNames passed', async () => {
+it('should add classNames passed', async () => {
   const markdown = '![image](./image.png)';
 
   const processor = remark()
@@ -71,4 +71,3 @@ test('should add classNames passed', async () => {
 
   expect(result.toString()).toContain('class="custom-class"');
 });
-

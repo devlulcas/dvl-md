@@ -1,9 +1,9 @@
 import { remark } from 'remark';
 import html from 'remark-html';
-import { expect, test } from 'vitest';
+import { expect, it } from 'vitest';
 import { remarkCodeWindow } from '..';
 
-test('should render a code block with an empty header and footer wrappred in a div with default options', async () => {
+it('should render a code block with an empty header and footer wrappred in a div with default options', async () => {
   const markdown = '```js' + '\n' + "const foo = 'bar';" + '\n' + '```';
 
   const processor = remark()
@@ -17,7 +17,7 @@ test('should render a code block with an empty header and footer wrappred in a d
   expect(result.toString()).toContain('data-remark-code-window-footer=""');
 });
 
-test('should render a code block with a filled header and footer wrappred in a div with default options', async () => {
+it('should render a code block with a filled header and footer wrappred in a div with default options', async () => {
   const markdown =
     '```js header="test-title" footer="test-footer"' +
     '\n' +
@@ -36,7 +36,7 @@ test('should render a code block with a filled header and footer wrappred in a d
   expect(result.toString()).toContain('test-footer');
 });
 
-test('should render a code block with a filled header containing withespaces', async () => {
+it('should render a code block with a filled header containing withespaces', async () => {
   const markdown =
     '```js header="test title" footer="test footer"' +
     '\n' +
@@ -55,13 +55,9 @@ test('should render a code block with a filled header containing withespaces', a
   expect(result.toString()).toContain('test footer');
 });
 
-test('should render a code block without window', async () => {
+it('should render a code block without window', async () => {
   const markdown =
-    '```js no-window' +
-    '\n' +
-    "const foo = 'bar';" +
-    '\n' +
-    '```';
+    '```js no-window' + '\n' + "const foo = 'bar';" + '\n' + '```';
 
   const processor = remark()
     .use(remarkCodeWindow)

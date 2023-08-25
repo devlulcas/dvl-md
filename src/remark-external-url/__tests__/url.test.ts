@@ -1,9 +1,9 @@
 import { remark } from 'remark';
 import html from 'remark-html';
-import { expect, test } from 'vitest';
+import { expect, it } from 'vitest';
 import { remarkExternalUrl } from '..';
 
-test('should add _blank in links that start with http', async () => {
+it('should add _blank in links that start with http', async () => {
   const markdown = '[website](https://www.example.com)';
 
   const processor = remark()
@@ -15,7 +15,7 @@ test('should add _blank in links that start with http', async () => {
   expect(result.toString()).toContain('target="_blank"');
 });
 
-test('should not add _blank in links if the website domain is the same as the in the domain option', async () => {
+it('should not add _blank in links if the website domain is the same as the in the domain option', async () => {
   const markdown = '[website](https://www.example.com)';
 
   const processor = remark()
@@ -27,7 +27,7 @@ test('should not add _blank in links if the website domain is the same as the in
   expect(result.toString()).not.toContain('target="_blank"');
 });
 
-test('should ignore false links', async () => {
+it('should ignore false links', async () => {
   const markdown = 'https://www.example.com';
 
   const processor = remark()
@@ -39,7 +39,7 @@ test('should ignore false links', async () => {
   expect(result.toString()).not.toContain('target="_blank"');
 });
 
-test('should ignore images', async () => {
+it('should ignore images', async () => {
   const markdown = '![alt](https://www.example.com/image)';
 
   const processor = remark()
