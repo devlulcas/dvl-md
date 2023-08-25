@@ -4,9 +4,9 @@ This is a custom flavor of Markdown that I use for my own projects. It's a bit o
 
 ## Custom syntax
 
-- [x] "Window" for code blocks with a title, footer, and copy button 
+- [x] "Window" for code blocks with a title, footer, and copy button
 
-```
+```txt
 ----------------
 | title [copy] |
 ----------------
@@ -18,7 +18,7 @@ This is a custom flavor of Markdown that I use for my own projects. It's a bit o
 
 - [x] Unwrapped code blocks
 
-```
+```txt
 ----------------
 | code         |
 ----------------
@@ -43,11 +43,14 @@ This is a custom flavor of Markdown that I use for my own projects. It's a bit o
 
 - [x] Auto "external link" icon for links that are not on the same domain
 
-## Done through external plugins
+## I don't wanna to deal with that right now, so it should be done through external plugins (sorry)
 
-- [ ] Github flavored markdown
-- [ ] Automatic table of contents
-- [ ] Title anchors
+> **Use those in conjunction to get better results**
+
+- [ ] [Automatic table of contents](https://github.com/remarkjs/remark-toc)
+- [ ] [Title ids](https://github.com/rehypejs/rehype-slug)
+- [ ] [Title anchors](https://github.com/rehypejs/rehype-autolink-headings)
+
 - [ ] Footnotes
 - [ ] Emoji
 - [ ] Math
@@ -55,6 +58,4 @@ This is a custom flavor of Markdown that I use for my own projects. It's a bit o
 ## Notes
 
 - Most of the custom syntax should be done through a custom remark plugin
-- Separate remark and rehype plugins
-- Monorepo with a core package and a bunch of plugins
 - Browser preview
