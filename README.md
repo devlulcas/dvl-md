@@ -50,10 +50,7 @@ This is a custom flavor of Markdown that I use for my own projects. It's a bit o
 - [ ] [Automatic table of contents](https://github.com/remarkjs/remark-toc)
 - [ ] [Title ids](https://github.com/rehypejs/rehype-slug)
 - [ ] [Title anchors](https://github.com/rehypejs/rehype-autolink-headings)
-
-- [ ] Footnotes
-- [ ] Emoji
-- [ ] Math
+- [ ] [Mermaid](https://github.com/remcohaszing/rehype-mermaidjs)
 
 ## Notes
 
