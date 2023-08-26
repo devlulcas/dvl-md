@@ -20,13 +20,13 @@ export const remarkCustomBlockquotes: RemarkCustomBlockquotes = (
   const types = pluginOptions?.types || [];
 
   const visitor: Visitor<mdast.Blockquote> = (node, index, parent) => {
-    const firstChild = node.children.at(0);
+    const firstChild = node.children?.[0];
 
-    if (!firstChild || firstChild.type !== 'paragraph') return;
+    if (!firstChild || firstChild.type !== 'paragraph') return undefined;
 
-    const firstTextNode = firstChild.children.at(0);
+    const firstTextNode = firstChild.children?.[0];
 
-    if (!firstTextNode || firstTextNode.type !== 'text') return;
+    if (!firstTextNode || firstTextNode.type !== 'text') return undefined;
 
     const [extractedTypePrefix, ...rest] = firstTextNode.value.split(':');
 
@@ -36,7 +36,7 @@ export const remarkCustomBlockquotes: RemarkCustomBlockquotes = (
       (type) => type.prefix === extractedTypePrefix
     );
 
-    if (!typeConfig) return;
+    if (!typeConfig) return undefined;
 
     node.data = {
       ...(node.data ?? {}),
@@ -44,14 +44,14 @@ export const remarkCustomBlockquotes: RemarkCustomBlockquotes = (
         ...(node.data?.hAttributes ?? {}),
         class: typeConfig.className,
       },
-    } 
+    };
 
     firstTextNode.value = content;
 
     if (parent) {
       parent.children.splice(index ?? 0, 1, node);
 
-      return (index ?? 0) + 2
+      return (index ?? 0) + 2;
     }
   };
 

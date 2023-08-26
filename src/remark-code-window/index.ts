@@ -1,1 +1,1 @@
-export { remarkCodeWindow } from './remark-code-window';
+export { remarkCodeWindow } from './remark-code-window.js';

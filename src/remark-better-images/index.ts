@@ -1,1 +1,1 @@
-export { remarkBetterImages } from './remark-better-images';
+export { remarkBetterImages } from './remark-better-images.js';

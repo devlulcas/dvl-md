@@ -1,7 +1,7 @@
 import { remark } from 'remark';
 import html from 'remark-html';
 import { expect, it } from 'vitest';
-import { remarkCodeWindow } from '..';
+import { remarkCodeWindow } from '../remark-code-window.js';
 
 it('should render a code block with an empty header and footer wrappred in a div with default options', async () => {
   const markdown = '```js' + '\n' + "const foo = 'bar';" + '\n' + '```';

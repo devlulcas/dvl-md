@@ -1,1 +1,1 @@
-export { remarkCustomBlockquotes } from './remark-custom-blockquotes';
+export { remarkCustomBlockquotes } from './remark-custom-blockquotes.js';

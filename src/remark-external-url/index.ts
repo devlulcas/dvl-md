@@ -1,2 +1,1 @@
-export { remarkExternalUrl } from "./remark-external-url";
-
+export { remarkExternalUrl } from './remark-external-url.js';

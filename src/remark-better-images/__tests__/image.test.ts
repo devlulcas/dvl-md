@@ -1,7 +1,7 @@
 import { remark } from 'remark';
 import html from 'remark-html';
 import { expect, it } from 'vitest';
-import { remarkBetterImages } from '..';
+import { remarkBetterImages } from '../remark-better-images.js';
 
 it('should add lazy in images by default', async () => {
   const markdown = '![image](image.png)';

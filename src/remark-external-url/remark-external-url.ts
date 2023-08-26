@@ -14,10 +14,10 @@ type RemarkExternalUrl = unified.Plugin<
 export const remarkExternalUrl: RemarkExternalUrl = (pluginOptions) => {
   const visitor: Visitor<mdast.Link> = (node, index, parent) => {
     if (pluginOptions?.domain && node.url.includes(pluginOptions.domain)) {
-      return;
+      return undefined;
     }
 
-    if (!node.url.startsWith('http')) return;
+    if (!node.url.startsWith('http')) return undefined;
 
     node.data = {
       ...(node.data ?? {}),

@@ -1,7 +1,7 @@
 import { remark } from 'remark';
 import html from 'remark-html';
 import { expect, it } from 'vitest';
-import { remarkCustomBlockquotes } from '..';
+import { remarkCustomBlockquotes } from '../remark-custom-blockquotes.js';
 
 it('should remove the prefix and insert a className in the blockquote element', async () => {
   const markdown = '> tip: simple text';
