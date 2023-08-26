@@ -50,7 +50,6 @@
     "vitest": "^0.32.4"
   },
   "dependencies": {
-    "mdast-builder": "^1.1.1",
     "unist-util-visit": "^4.1.2"
   }
 }
