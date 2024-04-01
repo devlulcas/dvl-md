@@ -1,19 +1,10 @@
 {
   "name": "@devlulcas/dvl-md",
   "version": "1.0.0",
-  "description": "",
+  "description": "Custom markdown syntax with remark and unified",
   "type": "module",
   "main": "dist/index.js",
-  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
-    },
-    "./package.json": "./package.json"
-  },
   "files": [
     "dist",
     "package.json",
@@ -37,19 +28,19 @@
     "blog",
     "content"
   ],
-  "author": "",
-  "license": "ISC",
+  "author": "devlulcas",
+  "license": "GLWTPL",
   "devDependencies": {
-    "@types/mdast": "^4.0.0",
-    "@types/unist": "^3.0.0",
-    "remark": "^14.0.3",
-    "remark-html": "^15.0.2",
-    "tsup": "^6.7.0",
-    "typescript": "^5.2.2",
-    "unified": "^10.1.2",
-    "vitest": "^0.32.4"
+    "@types/mdast": "^4.0.3",
+    "@types/unist": "^3.0.2",
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.3",
+    "unified": "^11.0.4",
+    "vitest": "^1.4.0"
   },
   "dependencies": {
-    "unist-util-visit": "^4.1.2"
+    "unist-util-visit": "^5.0.0"
   }
 }
