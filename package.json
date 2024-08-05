@@ -1,5 +1,5 @@
 {
-  "name": "@devlulcas/dvl-md",
+  "name": "devlulcas-md",
   "version": "1.1.0",
   "description": "Custom markdown syntax with remark and unified",
   "type": "module",
