@@ -1,7 +1,7 @@
 import type * as unist from 'unist';
 
 type WrapperNodeOptions = {
-  children: unist.Node<unist.Data>[];
+  children: unist.Node[];
   className: string;
 };
 

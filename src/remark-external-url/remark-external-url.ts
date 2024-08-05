@@ -1,7 +1,6 @@
 import type * as mdast from "mdast";
-import type * as hast from "hast";
 import type * as unified from "unified";
-import { visit, type Visitor } from "unist-util-visit";
+import { visit, type Visitor, CONTINUE } from "unist-util-visit";
 
 type RemarkExternalUrlOptions = {
   domain?: string;
@@ -15,10 +14,10 @@ type RemarkExternalUrl = unified.Plugin<
 export const remarkExternalUrl: RemarkExternalUrl = (options) => {
   const visitor: Visitor<mdast.Link> = (node, index, parent) => {
     if (options?.domain && node.url.includes(options.domain)) {
-      return undefined;
+      return CONTINUE;
     }
 
-    if (!node.url.startsWith("http")) return undefined;
+    if (!node.url.startsWith("http")) return  CONTINUE;
 
     node.data = {
       ...(node.data ?? {}),
@@ -33,6 +32,8 @@ export const remarkExternalUrl: RemarkExternalUrl = (options) => {
       parent.children.splice(index ?? 0, 1, node);
       return (index ?? 0) + 2;
     }
+
+    return CONTINUE;
   };
 
   return (tree) => {

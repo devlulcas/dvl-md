@@ -14,9 +14,9 @@ pnpm add -D devlulcas-md #pnpm
 - [x] "Window" for code blocks with a title, footer, and copy button
 
 ```md
-\`\`\`js header="Variable declaration" footer="test-footer"
+'''js header="Variable declaration" footer="test-footer"
 const foo = 'bar';
-\`\`\`
+'''
 ```
 
 ```ts
@@ -34,7 +34,7 @@ const markdown =
 
 const processor = remark()
   .use(dvl.remarkCodeWindow)
-  .use(html, { sanitize: false });
+  .use(remarkHtml, { sanitize: false });
 
 const html = await processor.process(markdown);
 
@@ -75,7 +75,7 @@ const markdown = "> tip: simple text";
 
 const processor = remark()
   .use(dvl.remarkCustomBlockquotes, { types: [{ prefix: "tip", className: "tip" }] })
-  .use(html, { sanitize: false });
+  .use(remarkHtml, { sanitize: false });
 
 const html = await processor.process(markdown);
 
@@ -104,7 +104,7 @@ const markdown = '![alt text](image.png "test image")';
 
 const processor = remark()
   .use(remarkBetterImages)
-  .use(html, { sanitize: false });
+  .use(remarkHtml, { sanitize: false });
 
 const html = await processor.process(markdown);
 
