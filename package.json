@@ -1,6 +1,6 @@
 {
   "name": "devlulcas-md",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Custom markdown syntax with remark and unified",
   "type": "module",
   "main": "dist/index.js",
