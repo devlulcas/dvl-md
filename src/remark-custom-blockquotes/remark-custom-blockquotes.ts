@@ -1,6 +1,6 @@
-import type * as mdast from 'mdast';
-import type * as unified from 'unified';
-import { visit, type Visitor } from 'unist-util-visit';
+import type * as mdast from "mdast";
+import type * as unified from "unified";
+import { visit, type Visitor } from "unist-util-visit";
 
 type RemarkCustomBlockquotesOptions = {
   types?: {
@@ -15,25 +15,25 @@ type RemarkCustomBlockquotes = unified.Plugin<
 >;
 
 export const remarkCustomBlockquotes: RemarkCustomBlockquotes = (
-  pluginOptions
+  pluginOptions,
 ) => {
   const types = pluginOptions?.types || [];
 
   const visitor: Visitor<mdast.Blockquote> = (node, index, parent) => {
     const firstChild = node.children?.[0];
 
-    if (!firstChild || firstChild.type !== 'paragraph') return undefined;
+    if (!firstChild || firstChild.type !== "paragraph") return undefined;
 
     const firstTextNode = firstChild.children?.[0];
 
-    if (!firstTextNode || firstTextNode.type !== 'text') return undefined;
+    if (!firstTextNode || firstTextNode.type !== "text") return undefined;
 
-    const [extractedTypePrefix, ...rest] = firstTextNode.value.split(':');
+    const [extractedTypePrefix, ...rest] = firstTextNode.value.split(":");
 
-    const content = rest.join(':');
+    const content = rest.join(":");
 
     const typeConfig = types.find(
-      (type) => type.prefix === extractedTypePrefix
+      (type) => type.prefix === extractedTypePrefix,
     );
 
     if (!typeConfig) return undefined;
@@ -41,7 +41,7 @@ export const remarkCustomBlockquotes: RemarkCustomBlockquotes = (
     node.data = {
       ...(node.data ?? {}),
       hProperties: {
-        ...(node.data?.hAttributes ?? {}),
+        ...(node.data?.hProperties ?? {}),
         class: typeConfig.className,
       },
     };
@@ -50,12 +50,11 @@ export const remarkCustomBlockquotes: RemarkCustomBlockquotes = (
 
     if (parent) {
       parent.children.splice(index ?? 0, 1, node);
-
       return (index ?? 0) + 2;
     }
   };
 
   return (tree) => {
-    visit(tree, 'blockquote', visitor);
+    visit(tree, "blockquote", visitor);
   };
 };
