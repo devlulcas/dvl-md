@@ -84,6 +84,6 @@ it("should add figure and figcaption when image has caption attr", async () => {
   const result = await processor.process(markdown);
 
   expect(result.toString().trim()).toBe(
-    '<p><figure><img src="/image.png" alt="alt text" title="test image" loading="lazy" class="remark-better-images-placeholder"><figcaption>test image</figcaption></figure></p>',
+    '<p><figure><img src="image.png" alt="alt text" title="test image" loading="lazy" class="remark-better-images-placeholder"><figcaption>test image</figcaption></figure></p>',
   );
 });

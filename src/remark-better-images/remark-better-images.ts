@@ -43,7 +43,7 @@ export const remarkBetterImages: RemarkBetterImages = (pluginOptions) => {
   };
 
   const visitor: Visitor<mdast.Image> = (node, index, parent) => {
-    if (!node.url.startsWith("http")) {
+    if (options.baseUrl && !node.url.startsWith("http")) {
       // removes './' and '/'
       const cleanUrl = node.url.replace(/^\.\//, "").replace(/^\//, "");
 
